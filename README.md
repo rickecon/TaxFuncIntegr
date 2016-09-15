@@ -24,10 +24,10 @@ In the future, you can check if any of the files in the remote repository (this 
 
 1. In your local terminal, Navigate to your ```/TaxFuncIntegr/``` folder.
 2. Type ```git status```.
-3. If it says that your local repository is ? commits behind, you can update your repository by typing ```git pull origin```.
+3. If it says that your local repository is [number>0] commits behind, you can update your repository by typing ```git pull origin```.
 
 ### Making a fork of the repository
-asdf
+Put fork information here.
 
 ## Python language and version
 The code is written in the open-source programming language of Python. We recommend downloading the [Anaconda distribution](https://www.continuum.io/downloads) of Python. Although we currently recommend using Python 3.x for future work, the code for this model is written to run only using Python 2.7. To do this, independent of your current version of Python, you can create a "conda environment" that uses Python 2.7 if you have the Anaconda distribution of Python.
