@@ -11,10 +11,20 @@ This is a good option if you do not use Git and/or you only plan on downloading 
 2. Click on the green "Clone or Download" button in the upper-right portion of the page.
 3. Select the "Download ZIP" option.
 4. Unzip the files in the ```TaxFuncIntegr-master.zip``` file.
-5. Copy the unzipped folder ```TaxFuncIntegr-master``` to the location you want on your local machine.
+5. Copy the unzipped folder ```TaxFuncIntegr-master``` to the directory you want on your local machine.
+6. Rename the folder ```TaxFuncIntegr```. (This is so the three methods described in this section give the same result.)
 
 ### Direct clone of the repository
-asdf
+This is a good option if you use Git (a powerful version control and collaborative codewriting platform), and you would like an easy way to update these files if we change them, but you are not interested in contributing to improving this code yourself. To clone this repository:
+
+1. In your local terminal, navigate to the directory on your local machine where you want to place these files.
+2. Type the command ```git clone https://github.com/rickecon/TaxFuncIntegr.git```.
+
+In the future, you can check if any of the files in the remote repository (this repository) have changed and update your files on your local machine by doing the following commands.
+
+1. In your local terminal, Navigate to your ```/TaxFuncIntegr/``` folder.
+2. Type ```git status```.
+3. If it says that your local repository is ? commits behind, you can update your repository by typing ```git pull origin```.
 
 ### Making a fork of the repository
 asdf
