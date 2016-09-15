@@ -50,3 +50,6 @@ All the analyses from the paper can be run by going to the terminal on your loca
 ```python
 python run_ogusa.py
 ```
+This ```run_ogusa.py``` script is the master calling script that runs the baseline steady-state computation (lines 52-60), the baseline transition path solution (lines 68-76), and the reform steady-state and transition path solutions (lines 84-93).
+
+All of the results are already saved as ```.pkl``` files in the ```/TaxFuncIntegr/Python/OUTPUT_BASELINE``` and ```/TaxFuncIntegr/Python/OUTPUT_REFORM``` folders. However, these results will be replicated by simply running the ```python run_ogusa.py``` command as described in the previous paragraphs.
