@@ -54,7 +54,7 @@ def run_micro_macro(user_params):
     kwargs={'output_base':output_base, 'baseline_dir':BASELINE_DIR,
             'baseline':True, 'analytical_mtrs':False, 'age_specific':True,
             'user_params':user_params,'guid':'int',
-            'run_micro':True}
+            'run_micro':False}
     #p1 = Process(target=runner, kwargs=kwargs)
     #p1.start()
     runner_SS(**kwargs)
@@ -87,7 +87,7 @@ def run_micro_macro(user_params):
     kwargs={'output_base':output_base, 'baseline_dir':BASELINE_DIR,
             'baseline':False, 'analytical_mtrs':False, 'age_specific':True,
             'reform':reform, 'user_params':user_params,'guid':'int',
-            'run_micro':True}
+            'run_micro':False}
     #p2 = Process(target=runner, kwargs=kwargs)
     #p2.start()
     runner(**kwargs)
