@@ -46,6 +46,7 @@ source deactivate
 When you enter the ```source activate py27``` command, you will be running Python 2.7 in your terminal session.
 
 ## Running the analyses
-All the analyses from the paper can be run by going to the terminal on your local machine and navigating to the ```/TaxFuncIntegr/Python/``` folder. After making sure you are running Python 2.7 (see previous section), run the code by typing ```python
+All the analyses from the paper can be run by going to the terminal on your local machine and navigating to the ```/TaxFuncIntegr/Python/``` folder. After making sure you are running Python 2.7 (see previous section), run the code by typing
+```python
 python run_ogusa.py
 ```
