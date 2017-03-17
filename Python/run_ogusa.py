@@ -15,7 +15,7 @@ from execute import runner, runner_SS
 
 def run_micro_macro(user_params):
 
-    reform = {2016: {
+    reform = {2017: {
         '_II_rt1': [.09],
         '_II_rt2': [.135],
         '_II_rt3': [.225],
@@ -30,10 +30,8 @@ def run_micro_macro(user_params):
         '_PT_rt5': [.297],
         '_PT_rt6': [.315],
         '_PT_rt7': [0.3564],
-        '_STD': [[6100, 12200, 6100, 8950, 12200, 6100, 1000],
-                  [6200, 12400, 6200, 9100, 12400, 6200, 1000],
-                  [6300, 12600, 6300, 9250, 12600, 6300, 1050],
-                  [6300*2, 12600*2, 6300*2, 9300*2, 12600*2, 6300*2, 1050*2]],
+        '_STD': [[6350*2.0, 12700*2.0, 6350*2.0, 9350*2.0, 12700*2.0, 6350*2.0]],
+        '_STD_Dep': [1050*2.0]
     }, }
 
     start_time = time.time()
@@ -41,7 +39,7 @@ def run_micro_macro(user_params):
     REFORM_DIR = "./OUTPUT_REFORM"
     BASELINE_DIR = "./OUTPUT_BASELINE"
 
-    user_params = {'frisch': 0.41, 'start_year': 2016}
+    user_params = {'frisch': 0.41, 'start_year': 2017}
 
     '''
     --------------------------------------------------------------------
@@ -49,15 +47,15 @@ def run_micro_macro(user_params):
     parallel if want
     --------------------------------------------------------------------
     '''
-    output_base = BASELINE_DIR
-    input_dir = BASELINE_DIR
-    kwargs={'output_base':output_base, 'baseline_dir':BASELINE_DIR,
-            'baseline':True, 'analytical_mtrs':False, 'age_specific':True,
-            'user_params':user_params,'guid':'int',
-            'run_micro':False}
-    #p1 = Process(target=runner, kwargs=kwargs)
-    #p1.start()
-    runner_SS(**kwargs)
+    # output_base = BASELINE_DIR
+    # input_dir = BASELINE_DIR
+    # kwargs={'output_base':output_base, 'baseline_dir':BASELINE_DIR,
+    #         'baseline':True, 'analytical_mtrs':False, 'age_specific':True,
+    #         'user_params':user_params,'guid':'int',
+    #         'run_micro':True}
+    # #p1 = Process(target=runner, kwargs=kwargs)
+    # #p1.start()
+    # runner_SS(**kwargs)
 
 
     '''
@@ -90,7 +88,7 @@ def run_micro_macro(user_params):
             'run_micro':False}
     #p2 = Process(target=runner, kwargs=kwargs)
     #p2.start()
-    runner(**kwargs)
+    runner_SS(**kwargs)
 
 
 
