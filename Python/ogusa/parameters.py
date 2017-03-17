@@ -288,7 +288,7 @@ def get_reduced_parameters(baseline, guid, user_modifiable, metadata):
     --------------------------------------------------------------------
     '''
     # Model Parameters
-    start_year = 2016
+    start_year = 2017
     starting_age = 40
     ending_age = 50
     S = int(ending_age-starting_age)
