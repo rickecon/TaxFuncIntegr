@@ -462,8 +462,8 @@ def wsumsq(params, *args):
     #     (coef3 * Y2til + coef4 * Ytil + Ftil + 1)) + min_y)
     # txrates_est = (((tau_x + shift_x) ** share) *
     #               ((tau_y + shift_y) ** (1 - share))) + shift
-    txrates_est = (((max_rate - min_rate) * (coef1 * I2til + coef2 * Itil + Etil) /
-        (coef1 * I2til + coef2 * Itil + Etil + 1)) + min_rate)
+    txrates_est = (((max_rate - min_rate) * ((coef1 * I2til + coef2 * Itil + Etil) /
+        (coef1 * I2til + coef2 * Itil + Etil + 1))) + min_rate)
     # txrates_est = (((max_rate - min_rate) * (coef1 * I2 + coef2 * I) /
     #     (coef1 * I2 + coef2 * I + 1)) + min_rate)
     errors = txrates_est - txrates
@@ -829,7 +829,7 @@ def txfunc_est(df, s, t, rate_type, output_dir, graph):
     #     np.array([X2bar, Xbar, Y2bar, Ybar]))
     # params[4:] = np.array([max_x, min_x, max_y, min_y, shift_x,
     #     shift_y, shift, share])
-    params = np.array([Atil, Btil, max_rate, min_rate])
+    params = np.array([Atil/I2bar, Btil/Ibar, max_rate, min_rate])
 
     if graph:
         '''
@@ -1060,9 +1060,9 @@ def tax_func_estimate(beg_yr=2016, baseline=True, analytical_mtrs=False,
     # micro_data = get_micro_data.get_data(baseline=baseline,
     #     start_year=beg_yr, reform=reform)
     if reform:
-        micro_data = pickle.load(open("/Users/jason.debacker/repos/dynamic/Python/micro_data_policy.pkl", "rb"))
+        micro_data = pickle.load(open("/Users/jason.debacker/repos/TaxFuncIntegr/Python/micro_data_policy.pkl", "rb"))
     else:
-        micro_data = pickle.load(open("/Users/jason.debacker/repos/dynamic/Python/micro_data_baseline.pkl", "rb"))
+        micro_data = pickle.load(open("/Users/jason.debacker/repos/TaxFuncIntegr/Python/micro_data_baseline.pkl", "rb"))
 
     for t in years_list: #for t in np.arange(2016, 2017):
         '''
@@ -1158,6 +1158,9 @@ def tax_func_estimate(beg_yr=2016, baseline=True, analytical_mtrs=False,
             # drop all obs with MTR on labor income < -0.45
             data_trnc = data_trnc.drop(data_trnc[data_trnc['MTR Labor']
                         < -0.45].index)
+
+        # pickle.dump(data_trnc, open("cleaned_data.pkl", "wb"))
+        # quit()
 
         # Create an array of the different ages in the data
         min_age = int(np.maximum(data_trnc['Age'].min(), s_min))
@@ -1587,10 +1590,10 @@ def get_tax_func_estimate(baseline=False, analytical_mtrs=False,
     dict_params = tax_func_estimate(start_year, baseline,
         analytical_mtrs, age_specific, reform)
     if baseline:
-        baseline_pckl = "TxFuncEst_baseline{}.pkl".format(guid)
+        baseline_pckl = "TxFuncEst_alt_baseline{}.pkl".format(guid)
         pkl_path = os.path.join(TAX_ESTIMATE_PATH, baseline_pckl)
     else:
-        policy_pckl = "TxFuncEst_policy{}.pkl".format(guid)
+        policy_pckl = "TxFuncEst_alt_policy{}.pkl".format(guid)
         pkl_path = os.path.join(TAX_ESTIMATE_PATH, policy_pckl)
 
     pickle.dump(dict_params, open(pkl_path, "wb"))
