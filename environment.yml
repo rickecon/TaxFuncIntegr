@@ -1,15 +1,17 @@
-name: ospcdyn
+name: tax_integr
 channels:
 - ospc
 dependencies:
 - ipython
 - ipython-notebook
 - setuptools
-- scipy
+- nomkl
+- scipy=0.18.1
 - matplotlib
-- taxcalc
+- taxcalc=0.8.3
 - numba
-- numpy
-- pandas=0.16.1
+- numpy=1.11.2
+- pandas==0.18.0
 - pytest
 - python=2.7
+
