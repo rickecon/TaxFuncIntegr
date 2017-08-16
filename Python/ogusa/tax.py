@@ -630,7 +630,7 @@ def get_lump_sum(r, w, b, n, BQ, factor, params):
     TW_params = (h_wealth, p_wealth, m_wealth)
     T_W = tau_wealth(b, TW_params) * b
     if method == 'SS':
-        T_P[retire:] -= theta * w
+        T_P[int(retire):] -= theta * w
         T_BQ = tau_bq * BQ / lambdas
         T_H = (omega * lambdas * (T_I + T_P + T_BQ + T_W)).sum()
     elif method == 'TPI':
@@ -677,7 +677,7 @@ def total_taxes(r, w, b, n, BQ, factor, T_H, j, shift, params):
         T_P         = [T,S,J] array, total payroll taxes
         T_W         = [T,S,J] array, total wealth taxes
         T_BQ        = [T,S,J] array, total bequest taxes
-        retireTPI   = integer, =(retire - S)
+        retireTPI   = integer, =(int(retire) - S)
         total_taxes = [T,] vector, net taxes
     Returns: total_taxes
 
@@ -699,18 +699,18 @@ def total_taxes(r, w, b, n, BQ, factor, T_H, j, shift, params):
         # The shift boolean makes sure we start replacement rates
         # at the correct age.
         if shift is False:
-            T_P[retire:] -= theta * w
+            T_P[int(int(retire)):] -= theta * w
         else:
-            T_P[retire - 1:] -= theta * w
+            T_P[int(int(retire)) - 1:] -= theta * w
         T_BQ = tau_bq * BQ / lambdas
     elif method == 'TPI':
         if shift is False:
             # retireTPI is different from retire, because in TPI we are counting backwards
             # with different length lists.  This will always be the correct location
             # of retirement, depending on the shape of the lists.
-            retireTPI = (retire - S)
+            retireTPI = (int(retire) - S)
         else:
-            retireTPI = (retire - 1 - S)
+            retireTPI = (int(retire) - 1 - S)
         if len(b.shape) != 3:
             T_P[retireTPI:] -= theta[j] * w[retireTPI:]
             T_BQ = tau_bq[j] * BQ / lambdas

@@ -353,7 +353,7 @@ def get_reduced_parameters(baseline, guid, user_modifiable, metadata):
     #   Bequest and Payroll Taxes
     tau_bq = np.zeros(J)
     tau_payroll = 0.15
-    retire = np.round(9.0 * S / 16.0) - 1
+    retire = int(np.round(9.0 * S / 16.0) - 1)
 
     # Simulation Parameters
     MINIMIZER_TOL = 1e-3
@@ -468,17 +468,22 @@ def get_full_parameters(baseline, guid, user_modifiable, metadata):
     mtrx_params = dict_params['tfunc_mtrx_params_S'][:S,:BW,:]
     mtry_params = dict_params['tfunc_mtry_params_S'][:S,:BW,:]
 
+    # etr_params[:, :, :] = np.tile(np.reshape(dict_params['tfunc_etr_params_S'][21,0,:],(1,1,12)),(S, BW, 1))
+    # mtrx_params[:, :, :] = np.tile(np.reshape(dict_params['tfunc_mtrx_params_S'][21,0,:],(1,1,12)),(S, BW, 1))
+    # mtry_params[:, :, :] = np.tile(np.reshape(dict_params['tfunc_mtry_params_S'][21,0,:],(1,1,12)),(S, BW, 1))
+
+
     # # Make all ETRs equal the average
-    # etr_params = np.zeros(etr_params.shape)
-    # etr_params[:, :, 10] = dict_params['tfunc_avg_etr'] # set shift to average rate
+    etr_params = np.zeros(etr_params.shape)
+    etr_params[:, :, 10] = dict_params['tfunc_avg_etr'] # set shift to average rate
 
-    # # Make all MTRx equal the average
-    # mtrx_params = np.zeros(mtrx_params.shape)
-    # mtrx_params[:, :, 10] = dict_params['tfunc_avg_mtrx'] # set shift to average rate
+    # Make all MTRx equal the average
+    mtrx_params = np.zeros(mtrx_params.shape)
+    mtrx_params[:, :, 10] = dict_params['tfunc_avg_mtrx'] # set shift to average rate
 
-    # # Make all MTRy equal the average
-    # mtry_params = np.zeros(mtry_params.shape)
-    # mtry_params[:, :, 10] = dict_params['tfunc_avg_mtry'] # set shift to average rate
+    # Make all MTRy equal the average
+    mtry_params = np.zeros(mtry_params.shape)
+    mtry_params[:, :, 10] = dict_params['tfunc_avg_mtry'] # set shift to average rate
 
     # # Make MTRx depend only on labor income
     # mtrx_params[:, :, 11] = 1.0 # set share parameter to 1
